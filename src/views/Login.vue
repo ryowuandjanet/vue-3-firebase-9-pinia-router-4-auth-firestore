@@ -39,7 +39,11 @@ const handleForgotPassword = async () => {
                 <label for="inputPassword" class="form-label">Password</label>
                 <input type="password" class="form-control" id="inputPassword" placeholder="Enter password" v-model.trim="password">
               </div>
-              <button type="submit" class="btn btn-primary" :disabled="userStore.loadingUser">Login</button>
+              <!-- Display "Loading..." when userStore.loadingUser is true -->
+              <button type="submit" class="btn btn-primary" :disabled="userStore.loadingUser">
+                <span v-if="userStore.loadingUser">Loading...</span>
+                <span v-else>Login</span>
+              </button>
             </form>
             <p class="mt-3">
               <a href="#" @click="handleForgotPassword">Forgot Password?</a>

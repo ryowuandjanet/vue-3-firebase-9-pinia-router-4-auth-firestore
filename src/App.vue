@@ -1,20 +1,28 @@
 <template>
   <div>
-    <h1>App</h1>
-    <nav v-if="!userStore.loadingSession">
-      <router-link to="/" v-if="userStore.userData">Home</router-link> |
-      <router-link to="/login" v-if="!userStore.userData">Login</router-link> |
-      <router-link to="/register" v-if="!userStore.userData">Register</router-link> |
-      <button @click="userStore.logoutUser" v-if="userStore.userData">Logout</button>
+    <nav v-if="userStore.userData" class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <router-link to="/" class="nav-link active" aria-current="page">Home</router-link>
+            </li>
+          </ul>
+          <button @click="userStore.logoutUser" class="btn btn-outline-success">Logout</button>
+        </div>
+      </div>
     </nav>
-    <div v-else>
-      loading user...
-    </div>
+
     <router-view></router-view>
   </div>
 </template>
 
 <script setup>
-import {useUserStore} from './stores/user'
-const userStore = useUserStore()
+import { useUserStore } from './stores/user';
+const userStore = useUserStore();
 </script>
